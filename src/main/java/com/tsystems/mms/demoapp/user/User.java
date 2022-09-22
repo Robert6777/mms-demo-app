@@ -7,9 +7,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.tsystems.mms.demoapp.dto.UserCreationCommand;
+import com.tsystems.mms.demoapp.organisational_unit.OrganisationalUnit;
 
 import java.io.Serializable;
 
@@ -36,7 +38,9 @@ public class User implements Serializable {
   @Column(name = "gender", nullable = false)
   private UserGender gender;
   
+
   
+
   
   
   

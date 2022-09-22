@@ -44,6 +44,8 @@ public class UserServiceTest {
     Mockito.verify(userRepository, Mockito.atMostOnce()).findAll();
 
   }
+  
+
 
   private User createUser(Long id, String email) {
     User user = new User();

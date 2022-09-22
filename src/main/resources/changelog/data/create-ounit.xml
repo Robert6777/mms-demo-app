@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="create-organisationalUnit-tables" author="mse">
+        <createTable tableName="demo_organisational_unit">
+            <column name="id" autoIncrement="true" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(512)"/>
+            
+           
+         
+         
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="units" author="mse">
+        <insert tableName="demo_organisational_unit">
+            <column name="name">Development</column>
+        </insert>
+        <insert tableName="demo_organisational_unit">
+            <column name="name">Sales</column>
+        </insert>
+        <insert tableName="demo_organisational_unit">
+            <column name="name">Research</column>
+        </insert>
+        <insert tableName="demo_organisational_unit">
+            <column name="name">Social Media</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
