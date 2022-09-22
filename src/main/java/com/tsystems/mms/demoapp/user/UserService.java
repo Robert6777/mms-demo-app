@@ -1,11 +1,13 @@
 package com.tsystems.mms.demoapp.user;
 
+import org.springframework.beans.InvalidPropertyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tsystems.mms.demoapp.dto.UserCreationCommand;
 import com.tsystems.mms.demoapp.dto.UserItem;
 import com.tsystems.mms.demoapp.dto.UserUpdateCommand;
+import com.tsystems.mms.demoapp.exception_handling.IncorrectEmailException;
 import com.tsystems.mms.demoapp.exception_handling.ResourceNotFoundException;
 
 import java.util.List;
@@ -33,7 +35,7 @@ public class UserService {
 	public List<UserItem> getAll() {
 		return userRepository.findAll().stream().map(UserItem::new).collect(Collectors.toList());
 	}
-	
+
 	public List<User> getAllForTestPurpose() {
 		return userRepository.findAll();
 	}
@@ -47,26 +49,35 @@ public class UserService {
 		return new UserItem(userRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id)));
 	}
-	
+
 	public void updateUser(UserUpdateCommand command, Long id) {
 		User userForUpdate = userRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
-		
-			userForUpdate.setEmail(command.getEmail());
-			userForUpdate.setFirstName(command.getFirstName());
-			userForUpdate.setSurname(command.getSurname());
-		
-		
+
+		userForUpdate.setEmail(command.getEmail());
+		userForUpdate.setFirstName(command.getFirstName());
+		userForUpdate.setSurname(command.getSurname());
+
 	}
-	
+
 	public void deleteUser(Long id) {
 		User userForDelete = userRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
-		
-	
-			userRepository.delete(userForDelete);	
+
+		userRepository.delete(userForDelete);
 	}
+
+	public void saveUserForTest(UserCreationCommand command) {
+		User user = new User(command);
+		
+		if(!command.getEmail().contains("@")) {
+			throw new IncorrectEmailException("the email is incorrect");
+		}else {
+			userRepository.save(user);
+		}
 	
-	
+		
+		
+	}
 
 }
