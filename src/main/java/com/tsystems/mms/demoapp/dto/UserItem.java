@@ -12,12 +12,14 @@ public class UserItem {
 
 
 
+
 	public UserItem(User user) {
 		super();
 		this.email = user.getEmail();
 		this.firstName = user.getFirstName();
 		this.surname = user.getSurname();
 		this.gender = user.getGender().toString();
+		
 
 	}
 
@@ -52,6 +54,12 @@ public class UserItem {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
+	
+	
+	
+	
+	
 	
 	
 	

@@ -24,6 +24,10 @@ public class OrganisationalUnit {
 
 	private String name;
 	
+	@OneToMany
+	(mappedBy = "unit")
+	private List<User>users;
+	
 
 
 	public String getName() {
@@ -45,6 +49,16 @@ public class OrganisationalUnit {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+	
+	
 
 
 

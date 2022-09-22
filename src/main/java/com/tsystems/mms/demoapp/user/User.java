@@ -19,32 +19,29 @@ import java.io.Serializable;
 @Table(name = "demo_user")
 public class User implements Serializable {
 
-  private static final long serialVersionUID = 1715994813284718249L;
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id", nullable = false)
-  protected Long id;
+	private static final long serialVersionUID = 1715994813284718249L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	protected Long id;
 
-  @Column(name = "email", nullable = false)
-  private String email;
-  
-  @Column(name = "firstname", nullable = false)
-  private String firstName;
-  
-  @Column(name = "surname", nullable = false)
-  private String surname;
-  
-  @Enumerated(EnumType.STRING)
-  @Column(name = "gender", nullable = false)
-  private UserGender gender;
-  
+	@Column(name = "email", nullable = false)
+	private String email;
 
-  
+	@Column(name = "firstname", nullable = false)
+	private String firstName;
 
-  
-  
-  
-  public User() {
+	@Column(name = "surname", nullable = false)
+	private String surname;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "gender", nullable = false)
+	private UserGender gender;
+
+	@ManyToOne
+	private OrganisationalUnit unit;
+
+	public User() {
 	}
 
 	public User(UserCreationCommand command) {
@@ -53,55 +50,57 @@ public class User implements Serializable {
 		this.firstName = command.getFirstName();
 		this.surname = command.getSurname();
 		this.gender = command.getGender();
-		
+
 	}
-  
-  
-  
 
-  public Long getId() {
-    return id;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public String getEmail() {
-    return email;
-  }
+	public String getEmail() {
+		return email;
+	}
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-public String getFirstName() {
-	return firstName;
-}
+	public String getFirstName() {
+		return firstName;
+	}
 
-public void setFirstName(String firstName) {
-	this.firstName = firstName;
-}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-public String getSurname() {
-	return surname;
-}
+	public String getSurname() {
+		return surname;
+	}
 
-public void setSurname(String surname) {
-	this.surname = surname;
-}
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
 
-public UserGender getGender() {
-	return gender;
-}
+	public UserGender getGender() {
+		return gender;
+	}
 
-public void setGender(UserGender gender) {
-	this.gender = gender;
-}
-  
-  
-  
-  
-  
-  
+	public void setGender(UserGender gender) {
+		this.gender = gender;
+	}
+
+	public OrganisationalUnit getUnit() {
+		return unit;
+	}
+
+	public void setUnit(OrganisationalUnit unit) {
+		this.unit = unit;
+	}
+	
+	
+
 }

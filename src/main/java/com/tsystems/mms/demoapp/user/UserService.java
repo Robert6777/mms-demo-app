@@ -10,6 +10,7 @@ import com.tsystems.mms.demoapp.exception_handling.ResourceNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * This service manages all user.
@@ -29,8 +30,8 @@ public class UserService {
 	 * 
 	 * @return List of users.
 	 */
-	public List<User> getAll() {
-		return userRepository.findAll();
+	public List<UserItem> getAll() {
+		return userRepository.findAll().stream().map(UserItem::new).collect(Collectors.toList());
 	}
 
 	public User saveUser(UserCreationCommand command) {

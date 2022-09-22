@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tsystems.mms.demoapp.dto.UnitDto;
 import com.tsystems.mms.demoapp.user.User;
 import com.tsystems.mms.demoapp.user.UserController;
 
@@ -28,7 +29,7 @@ public class OrganisationController {
 	}
 	
 	  @GetMapping()
-	  public ResponseEntity<List<OrganisationalUnit>> getUsers() {
+	  public ResponseEntity<List<UnitDto>> getUsers() {
 
 	    LOGGER.info("Get all organisational units from the database");
 	    return ResponseEntity.ok(service.getAll());

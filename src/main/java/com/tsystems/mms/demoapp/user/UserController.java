@@ -51,7 +51,7 @@ public class UserController {
    * @return A list of users.
    */
   @GetMapping()
-  public ResponseEntity<List<User>> getUsers() {
+  public ResponseEntity<List<UserItem>> getUsers() {
 
     LOGGER.info("Get all users from the database");
     return ResponseEntity.ok(userService.getAll());
