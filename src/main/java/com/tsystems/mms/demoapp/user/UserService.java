@@ -48,6 +48,8 @@ public class UserService {
 				.orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
 		
 			userForUpdate.setEmail(command.getEmail());
+			userForUpdate.setFirstName(command.getFirstName());
+			userForUpdate.setSurname(command.getSurname());
 		
 		
 	}
