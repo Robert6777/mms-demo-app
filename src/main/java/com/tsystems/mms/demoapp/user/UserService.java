@@ -1,8 +1,15 @@
 package com.tsystems.mms.demoapp.user;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tsystems.mms.demoapp.dto.UserCreationCommand;
+import com.tsystems.mms.demoapp.dto.UserItem;
+import com.tsystems.mms.demoapp.dto.UserUpdateCommand;
+import com.tsystems.mms.demoapp.exception_handling.ResourceNotFoundException;
+
 import java.util.List;
+import java.util.Optional;
 
 /**
  * This service manages all user.
@@ -11,17 +18,50 @@ import java.util.List;
 @Transactional
 public class UserService {
 
-  private final UserRepository userRepository;
+	private final UserRepository userRepository;
 
-  public UserService(UserRepository userRepository) {
-    this.userRepository = userRepository;
-  }
+	public UserService(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 
-  /**
-   * Find all users from the database.
-   * @return List of users.
-   */
-  public List<User> getAll() {
-    return userRepository.findAll();
-  }
+	/**
+	 * Find all users from the database.
+	 * 
+	 * @return List of users.
+	 */
+	public List<User> getAll() {
+		return userRepository.findAll();
+	}
+
+	public User saveUser(UserCreationCommand command) {
+		User user = new User(command);
+		return userRepository.save(user);
+	}
+
+	public UserItem getById(Long id) {
+		return new UserItem(userRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id)));
+	}
+	
+	public void updateUser(UserUpdateCommand command, Long id) {
+		User userForUpdate = userRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+		
+			userForUpdate.setEmail(command.getEmail());
+		
+		
+	}
+	
+	public void deleteUser(Long id) {
+		User userForDelete = userRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+		
+	
+			userRepository.delete(userForDelete);
+		
+		
+	}
+	
+	
+
 }

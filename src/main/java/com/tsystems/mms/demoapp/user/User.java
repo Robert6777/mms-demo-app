@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.tsystems.mms.demoapp.dto.UserCreationCommand;
+
 import java.io.Serializable;
 
 @Entity
@@ -20,6 +23,17 @@ public class User implements Serializable {
 
   @Column(name = "email", nullable = false)
   private String email;
+  
+  public User() {
+	}
+
+	public User(UserCreationCommand command) {
+		super();
+		this.email = command.getEmail();
+	}
+  
+  
+  
 
   public Long getId() {
     return id;
