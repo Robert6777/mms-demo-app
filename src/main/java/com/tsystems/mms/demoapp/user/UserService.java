@@ -33,6 +33,10 @@ public class UserService {
 	public List<UserItem> getAll() {
 		return userRepository.findAll().stream().map(UserItem::new).collect(Collectors.toList());
 	}
+	
+	public List<User> getAllForTestPurpose() {
+		return userRepository.findAll();
+	}
 
 	public User saveUser(UserCreationCommand command) {
 		User user = new User(command);
@@ -60,9 +64,7 @@ public class UserService {
 				.orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
 		
 	
-			userRepository.delete(userForDelete);
-		
-		
+			userRepository.delete(userForDelete);	
 	}
 	
 	

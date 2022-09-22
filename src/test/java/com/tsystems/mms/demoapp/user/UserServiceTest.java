@@ -28,22 +28,22 @@ public class UserServiceTest {
     testUsers.add(createUser(3L,"test3.user@foo.bar"));
   }
 
-//  @Test
-//  void testGetAll () {
-//
-//    // Mock
-//    Mockito.when(userRepository.findAll()).thenReturn(testUsers);
-//
-//    // Assert
-//    List<User> users = userService.getAll();
-//    Assertions.assertNotNull(users);
-//    Assertions.assertEquals(3, users.size());
-//    Assertions.assertEquals(testUsers.get(0), users.get(0));
-//
-//    // Verify
-//    Mockito.verify(userRepository, Mockito.atMostOnce()).findAll();
-//
-//  }
+  @Test
+  void testGetAll () {
+
+    // Mock
+    Mockito.when(userRepository.findAll()).thenReturn(testUsers);
+
+    // Assert
+    List<User> users = userService.getAllForTestPurpose();
+    Assertions.assertNotNull(users);
+    Assertions.assertEquals(3, users.size());
+    Assertions.assertEquals(testUsers.get(0), users.get(0));
+
+    // Verify
+    Mockito.verify(userRepository, Mockito.atMostOnce()).findAll();
+
+  }
   
 
 
