@@ -5,20 +5,29 @@ import com.tsystems.mms.demoapp.user.UserGender;
 
 public class UserItem {
 	
+	private Long id;
 	private String email;
 	private String firstName;
 	private String surname;
 	private String gender;
+	private String organisationUnit;
 
 
 
 
 	public UserItem(User user) {
 		super();
+		this.id = user.getId();
 		this.email = user.getEmail();
 		this.firstName = user.getFirstName();
 		this.surname = user.getSurname();
 		this.gender = user.getGender().toString();
+		if(user.getUnit()==null) {
+			this.organisationUnit = "not assigned to organisational unit yet";
+		}else {
+				this.organisationUnit = user.getUnit().getName();
+		}
+	
 		
 
 	}
@@ -54,6 +63,24 @@ public class UserItem {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
+	public String getOrganisationUnit() {
+		return organisationUnit;
+	}
+
+	public void setOrganisationUnit(String organisationUnit) {
+		this.organisationUnit = organisationUnit;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
 
 	
 	
